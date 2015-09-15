@@ -1,0 +1,34 @@
+---
+
+- name: register the current terminal profile
+  shell: defaults read "com.apple.Terminal" "Default Window Settings"
+  register: terminal_profile_result
+
+- name: store the terminal profile in /tmp
+  copy:
+    src: "base16-pop.dark.256.terminal"
+    dest: "/tmp/base16-pop.dark.256.terminal"
+  when: terminal_profile_result != "base16-pop.dark.256"
+
+- name: install the terminal profile
+  shell: open /tmp/base16-pop.dark.256.terminal
+  when: terminal_profile_result != "base16-pop.dark.256"
+
+- name: wait until the terminal has had time to respond
+  pause: seconds=5
+
+- name: set the Default Window Settings
+  osx_defaults:
+    domain: com.apple.Terminal
+    key: Default Window Settings
+    type: string
+    value: "base16-pop.dark.256"
+    state: present
+
+- name: set the Startup Window Settings
+  osx_defaults:
+    domain: com.apple.Terminal
+    key: Startup Window Settings
+    type: string
+    value: "base16-pop.dark.256"
+    state: present
