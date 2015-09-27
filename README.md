@@ -6,6 +6,13 @@ Ansible role to sets up a complete CLI environment on OSX. This role is part of 
 
 * OSX 10.10 or 10.11
 
+## Role variables
+
+```yaml
+git_user_name: Your Name
+git_user_email: your@email.address
+```
+
 ## Dependencies
 
 * [roderik.superlumic-homebrew](https://github.com/superlumic/ansible-role-homebrew)
