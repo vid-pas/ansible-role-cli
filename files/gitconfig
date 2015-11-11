@@ -77,11 +77,6 @@
     unpublish = "!git push origin :$(git branch-name)"
     recreate = "!f() { [[ -n $@ ]] && git checkout \"$@\" && git unpublish && git checkout master && git branch -D \"$@\" && git checkout -b \"$@\" && git publish; }; f"
 
-[apply]
-
-    # Detect whitespace errors when applying a patch
-    whitespace = fix
-
 [core]
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
