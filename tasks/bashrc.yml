@@ -38,6 +38,8 @@
     - completion
     - editor
     - history
+    - docker
+    - aliases
 
 - name: add the different configuration files to bashrc
   become: yes
@@ -54,3 +56,5 @@
     - completion
     - editor
     - history
+    - docker
+    - aliases
