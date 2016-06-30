@@ -21,7 +21,7 @@
     mode: 0644
   with_items:
     - { url: 'https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS', dest: /etc/LS_COLORS}
-    - { url: 'https://raw.githubusercontent.com/chriskempson/base16-shell/master/base16-eighties.dark.sh', dest: /etc/base16-eighties.dark.sh}
+    - { url: 'https://raw.githubusercontent.com/chriskempson/base16-shell/master/scripts/base16-eighties.sh', dest: /etc/base16-eighties.dark.sh}
 
 - name: place the different configuration files into place
   become: yes
