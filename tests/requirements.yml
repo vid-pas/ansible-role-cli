@@ -1,4 +1,4 @@
 ---
 
-- src: roderik.superlumic-homebrew
-- src: roderik.superlumic-osx-defaults
+- src: vid.superlumic-homebrew
+- src: vid.superlumic-osx-defaults

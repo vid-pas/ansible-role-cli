@@ -11,6 +11,6 @@ galaxy_info:
   categories:
     - system
 dependencies:
-  - roderik.superlumic-homebrew
-  - roderik.superlumic-osx-defaults
+  - vid.superlumic-homebrew
+  - vid.superlumic-osx-defaults
 
