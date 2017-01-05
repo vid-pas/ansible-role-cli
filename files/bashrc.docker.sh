@@ -31,3 +31,7 @@ function dcgulp() {
 function dcswagger() {
   docker exec -it $(docker-compose ps -q php) ./generate_swagger_docs.sh
 }
+
+if hash dinghy 2>/dev/null; then
+  $(dinghy shellinit)
+fi
