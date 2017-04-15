@@ -1,6 +1,6 @@
 
 # clear all docker images and containers
-alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q)'
+alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 
 alias dc='docker-compose'
 
