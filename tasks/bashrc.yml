@@ -1,10 +1,5 @@
 ---
 
-- name: tap
-  homebrew_tap: tap={{item}} state=present
-  with_items:
-    - homebrew/versions
-
 - name: install dependencies
   homebrew: name={{item}} state=latest
   with_items:
