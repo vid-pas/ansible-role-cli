@@ -59,6 +59,8 @@
 
     # List contributors with number of commits
     contributors = shortlog --summary --numbered
+    
+    mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
 
     # Merge GitHub pull request on top of the `master` branch
     mpr = "!f() { \

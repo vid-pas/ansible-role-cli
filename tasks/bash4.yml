@@ -1,8 +1,5 @@
 ---
 
-- name: tap homebrew/core
-  homebrew_tap: tap=homebrew/core state=present  #updated from /dupes since deprecation
-
 - name: install bash4
   homebrew: name=bash state=latest
 
