@@ -35,6 +35,7 @@
     - history
     - docker
     - aliases
+    - go
 
 - name: add the different configuration files to bashrc
   become: yes
