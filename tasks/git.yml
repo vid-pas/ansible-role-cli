@@ -1,5 +1,4 @@
 ---
-
 - name: install dependencies
   homebrew: name={{item}} state=latest
   with_items:
@@ -9,13 +8,13 @@
 - name: put up a gitconfig
   become: yes
   copy:
-    src: "gitconfig"
-    dest: "/etc/gitconfig"
+    src: 'gitconfig'
+    dest: '/etc/gitconfig'
 
 - name: put up a gitconfig
   copy:
-    src: "gitconfig"
-    dest: "/usr/local/etc/gitconfig"
+    src: 'gitconfig'
+    dest: '/usr/local/etc/gitconfig'
 
 - name: get git username
   shell: git config --global --get user.name
