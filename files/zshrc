@@ -71,3 +71,8 @@ if [ -r ~/.zshrc.not.public ]
 then
     source ~/.zshrc.not.public
 fi
+
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
