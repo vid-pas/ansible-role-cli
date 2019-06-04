@@ -1,7 +1,14 @@
 ---
 
 - include: bash4.yml
+  when: "bash" != "{{preferred_shell}}"
+
 - include: bashrc.yml
+  when: "bash" != "{{preferred_shell}}"
+
+- include: zsh.yml
+  when: "zsh" != "{{preferred_shell}}"
+
 - include: inputrc.yml
 - include: git.yml
 - include: terminal.yml

@@ -1,0 +1,43 @@
+---
+- name: install zsh
+  homebrew: name=zsh state=latest
+
+- name: install personal cask applications
+  homebrew_cask: name={{item}} state=present
+  with_items:
+    - font-firacode-nerd-font
+    - font-firacode-nerd-font-mono
+
+- name: add zsh to the allowed shells
+  become: yes
+  lineinfile: >
+    dest=/etc/shells
+    regexp="{{ item.regexp }}"
+    line="{{ item.line }}"
+    state=present
+    create=true
+  with_items:
+    - { regexp: '^/usr/local/bin/bash', line: '/usr/local/bin/bash' }
+
+- name: register the current shell
+  shell: echo $SHELL
+  register: current_shell_result
+  changed_when: False
+
+- name: change shell for the current user
+  become: yes
+  shell: chsh -s /usr/local/bin/zsh {{ lookup('env','USER') }}
+  when: current_shell_result.stdout != "/usr/local/bin/zsh"
+
+- name: install zpreztorc
+  git: repo="https://github.com/sorin-ionescu/prezto.git" dest="{{ home_dir }}/.zprezto" update=no recursive=yes
+
+- name: place the different configuration files into place
+  become: yes
+  copy:
+    src: '{{item}}'
+    dest: '{{ home_dir }}/.{{ item }}'
+  with_items:
+    - zpreztorc
+    - zprofile
+    - zshrc

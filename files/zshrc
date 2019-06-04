@@ -1,0 +1,73 @@
+# SOURCE: https://github.com/franklouwers/dotfiles-zsh/blob/master/zpreztorc
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+export TERM="xterm-256color"
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
+
+#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs aws)
+#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time kubecontext)
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Colors
+if [ -x /usr/bin/dircolors ]; then
+    test -r /etc/lscolors && eval "$(dircolors -b /etc/lscolors)" || eval "$(dircolors -b)"
+elif [ -x /usr/local/bin/gdircolors ]; then
+    test -r /etc/lscolors && eval "$(gdircolors -b /etc/lscolors)" || eval "$(gdircolors -b)"
+fi
+
+BASE16_SHELL="/etc/base16-eighties.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
+export CLICOLOR=1
+
+if [ -x /usr/local/bin/gls ]; then
+    alias ls='gls --color=auto'
+elif ls --color > /dev/null 2>&1; then
+    alias ls='ls --color=auto'
+else
+    alias ls='ls -G'
+fi
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+export GREP_OPTIONS='--color=auto';
+export EDITOR="vim"
+
+# Aliases
+
+alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
+alias dc='docker-compose'
+alias k='kubectl'
+
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Z because z
+#. /usr/local/etc/profile.d/z.sh
+#alias zz='z -l'
+
+# pdf_join
+function pdf_join {
+  join_py="/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py"
+  read "output_file?Name of output file > "
+  "$join_py" -o $output_file $@ && open $output_file
+}
+
+alias sshpass='ssh -o PubkeyAuthentication=no -i /dev/null'
+
+if [ -r ~/.zshrc.not.public ]
+then
+    source ~/.zshrc.not.public
+fi
