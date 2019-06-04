@@ -1,6 +1,11 @@
 ---
 - name: install zsh
   homebrew: name=zsh state=latest
+  
+ - name: homebrew taps
+  homebrew_tap: tap={{ item }} state=present
+  with_items:
+    - homebrew/cask-fonts
 
 - name: install personal cask applications
   homebrew_cask: name={{item}} state=present
