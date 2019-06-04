@@ -2,4 +2,3 @@
 git_user_name: Your Name
 git_user_email: your@email.address
 preferred_shell: bash4
-home_dir: '/Users/{{ user_name }}/'

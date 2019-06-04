@@ -30,13 +30,12 @@
   when: current_shell_result.stdout != "/usr/local/bin/zsh"
 
 - name: install zpreztorc
-  git: repo="https://github.com/sorin-ionescu/prezto.git" dest="{{ home_dir }}/.zprezto" update=no recursive=yes
+  git: repo="https://github.com/sorin-ionescu/prezto.git" dest="~/.zprezto" update=no recursive=yes
 
 - name: place the different configuration files into place
-  become: yes
   copy:
     src: '{{item}}'
-    dest: '{{ home_dir }}/.{{ item }}'
+    dest: '~/.{{ item }}'
   with_items:
     - zpreztorc
     - zprofile
