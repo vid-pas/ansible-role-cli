@@ -6,4 +6,33 @@ source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r /etc/lscolors && eval "$(dircolors -b /etc/lscolors)" || eval "$(dircolors -b)"
+elif [ -x /usr/local/bin/gdircolors ]; then
+    test -r /etc/lscolors && eval "$(gdircolors -b /etc/lscolors)" || eval "$(gdircolors -b)"
+fi
+
+export CLICOLOR=1
+
+if [ -x /usr/local/bin/gls ]; then
+    alias ls='gls --color=auto'
+elif ls --color > /dev/null 2>&1; then
+    alias ls='ls --color=auto'
+else
+    alias ls='ls -G'
+fi
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+export GREP_OPTIONS='--color=auto';
+
+alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
+alias dc='docker-compose'
+
 PROMPT='%B%m%~%b$(git_super_status) %# '
