@@ -4,6 +4,7 @@
   with_items:
     - zsh-autosuggestions
     - zsh-completions
+    - zsh-git-prompt
 
     
 - name: place the different configuration files into place
@@ -12,6 +13,3 @@
     dest: '~/.{{ item }}'
   with_items:
     - zshrc
-
-- name: place the different configuration files into place
-  shell: rm -f ~/.zcompdump; compinit
