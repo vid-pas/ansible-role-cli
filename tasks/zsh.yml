@@ -1,1 +1,13 @@
 ---
+- name: install personal brew apps
+  homebrew: name={{item}} state=latest
+  with_items:
+    - zsh-autosuggestions
+
+    
+- name: place the different configuration files into place
+  copy:
+    src: '{{item}}'
+    dest: '~/.{{ item }}'
+  with_items:
+    - zshrc
