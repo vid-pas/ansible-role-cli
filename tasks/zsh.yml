@@ -5,7 +5,7 @@
     - zsh-autosuggestions
     - zsh-completions
     - zsh-git-prompt
-
+    - zsh-history-substring-search
     
 - name: place the different configuration files into place
   copy:
