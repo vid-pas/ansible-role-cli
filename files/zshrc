@@ -36,4 +36,10 @@ alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q);
 alias dc='docker-compose'
 alias k='kubectl'
 
-PROMPT='%B%m%~%b$(git_super_status) %# '
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*" 
+LCHAR_WIDTH=%1G
+LCHAR='$'
+PROMPT='%{$fg[cyan]%}%~ %{$fg[white]%}%{$LCHAR$LCHAR_WIDTH%} %{$reset_color%}'
+RPROMPT='$(git_super_status)'                                                                                                                                                                                                                                          
