@@ -3,6 +3,7 @@
   homebrew: name={{item}} state=latest
   with_items:
     - zsh-autosuggestions
+    - zsh-completions
 
     
 - name: place the different configuration files into place
@@ -11,3 +12,6 @@
     dest: '~/.{{ item }}'
   with_items:
     - zshrc
+
+- name: place the different configuration files into place
+  shell: rm -f ~/.zcompdump; compinit
