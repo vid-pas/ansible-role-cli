@@ -34,5 +34,6 @@ export GREP_OPTIONS='--color=auto';
 
 alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 alias dc='docker-compose'
+alias k='kubectl'
 
 PROMPT='%B%m%~%b$(git_super_status) %# '
