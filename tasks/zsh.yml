@@ -1,4 +1,7 @@
 ---
+- name: tap the repos
+  homebrew_tap: tap=superbrothers/zsh-kubectl-prompt state=present
+
 - name: install personal brew apps
   homebrew: name={{item}} state=latest
   with_items:
@@ -7,6 +10,7 @@
     - zsh-git-prompt
     - zsh-history-substring-search
     - zsh-syntax-highlighting
+    - zsh-kubectl-prompt
     
 - name: place the different configuration files into place
   copy:
