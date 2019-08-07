@@ -1,6 +1,8 @@
 source /etc/zshrc
 
 autoload -Uz compinit
+autoload -U colors; colors
+
 typeset -i updated_at=$(date +'%j' -r ~/.zcompdump 2>/dev/null || stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)
 if [ $(date +'%j') != $updated_at ]; then
   compinit -i
@@ -61,10 +63,12 @@ alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q);
 alias dc='docker-compose'
 alias k='kubectl'
 
+source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
+
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*" 
 LCHAR_WIDTH=%1G
 LCHAR='$'
 PROMPT='%{$fg[cyan]%}%~ %{$fg[white]%}%{$LCHAR$LCHAR_WIDTH%} %{$reset_color%}'
-RPROMPT='$(git_super_status)'                                                                                                                                                                                                                                          
+RPROMPT='($(git_super_status)) %{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'                                                                                                                                                                                                                                          
