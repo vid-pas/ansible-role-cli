@@ -5,6 +5,7 @@
 - name: install personal brew apps
   homebrew: name={{item}} state=latest
   with_items:
+    - zplug
     - zsh-autosuggestions
     - zsh-completions
     - zsh-git-prompt
