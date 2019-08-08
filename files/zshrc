@@ -54,22 +54,25 @@ fi
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-
 export GREP_OPTIONS='--color=auto';
 
 alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 alias dc='docker-compose'
-alias k='kubectl'
 
 source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
 source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+zplug "zpm-zsh/ssh"
+zplug "b4b4r07/enhancd"
+zplug "zpm-zsh/colorize"
+zplug "dbz/kube-aliases"
+zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug "srijanshetty/node.plugin.zsh"
+zplug romkatv/powerlevel10k, use:powerlevel10k.zsh-theme
 
 # Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
+if ! zplug check; then
     printf "Install? [y/N]: "
     if read -q; then
         echo; zplug install
@@ -77,12 +80,19 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*" 
-LCHAR_WIDTH=%1G
-LCHAR='$'
-PROMPT='%{$fg[cyan]%}%~ %{$fg[white]%}%{$LCHAR$LCHAR_WIDTH%} %{$reset_color%}'
-RPROMPT='($(git_super_status)) %{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'                                                                                                                                                                                                                                          
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fpath=(/usr/local/share/zsh-completions $fpath)
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+#ZSH_THEME_GIT_PROMPT_PREFIX="%{$reset_color%}%{$fg[green]%}"
+#ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}%{$reset_color%}"
+#ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}*" 
+#LCHAR_WIDTH=%1G
+#LCHAR='$'
+#PROMPT='%{$fg[cyan]%}%~ %{$fg[white]%}%{$LCHAR$LCHAR_WIDTH%} %{$reset_color%}'
+#RPROMPT='($(git_super_status)) %{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'                                                                                                                                                                                                                                          
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
