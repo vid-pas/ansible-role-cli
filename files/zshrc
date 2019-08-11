@@ -59,6 +59,10 @@ export GREP_OPTIONS='--color=auto';
 alias dockerclean='docker rm $(docker ps -a -q); docker rmi $(docker images -q); docker volume rm $(docker volume ls -f dangling=true -q)'
 alias dc='docker-compose'
 
+function kmerge() {
+  KUBECONFIG=~/.kube/config:$1 kubectl config view --flatten > ~/.kube/mergedkub && mv ~/.kube/mergedkub ~/.kube/config
+}
+
 source /usr/local/etc/zsh-kubectl-prompt/kubectl.zsh
 source "/usr/local/opt/zsh-git-prompt/zshrc.sh"
 source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
