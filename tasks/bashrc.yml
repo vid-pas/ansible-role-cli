@@ -5,6 +5,7 @@
   with_items:
     - coreutils
     - bash-completion2
+    - kube-ps1
 
 - name: download config files
   become: yes
@@ -35,6 +36,7 @@
     - history
     - docker
     - aliases
+    - go
 
 - name: add the different configuration files to bashrc
   become: yes
@@ -53,3 +55,4 @@
     - history
     - docker
     - aliases
+    - go
