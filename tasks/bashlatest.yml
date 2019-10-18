@@ -1,9 +1,9 @@
 ---
 
-- name: install bash4
+- name: install bashlatest
   homebrew: name=bash state=latest
 
-- name: add bash4 to the allowed shells
+- name: add bashlatest to the allowed shells
   become: yes
   lineinfile: >
     dest=/etc/shells
