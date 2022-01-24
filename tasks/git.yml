@@ -11,7 +11,10 @@
     src: 'gitconfig'
     dest: '/etc/gitconfig'
 
-- name: put up a gitconfig
+- name: ensure /usr/local/etc dir exists
+  path: /usr/local/etc state: directory
+
+- name: put up a gitconfig in /usr/local/etc
   copy:
     src: 'gitconfig'
     dest: '/usr/local/etc/gitconfig'
