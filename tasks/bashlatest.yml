@@ -34,6 +34,6 @@
   shell: dscl . -create /Users/root UserShell /usr/local/bin/bash
   when: 'current_root_shell_result.stdout != "UserShell: /usr/local/bin/bash"'
 
-- name: link /root to /var/root
-  become: yes
-  file: src=/var/root dest=/root state=link
+#- name: link /root to /var/root
+#  become: yes
+#  file: src=/var/root dest=/root state=link
