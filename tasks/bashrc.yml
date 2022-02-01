@@ -5,7 +5,7 @@
   with_items:
     - coreutils
     - bash-completion2
-    - kube-ps1
+    #- kube-ps1
 
 - name: download config files
   become: yes
