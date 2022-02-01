@@ -28,7 +28,7 @@
     group: wheel
     mode: 0644
   with_items:
-    - prompt
+    #- prompt
     - coloring
     - cask
     - completion
@@ -47,7 +47,7 @@
     state=present
     create=true
   with_items:
-    - prompt
+    #- prompt
     - coloring
     - cask
     - completion
